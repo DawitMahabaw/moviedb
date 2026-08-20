@@ -1,0 +1,14 @@
+import React from 'react'
+import TestOne from './Components/test/TestOne'
+import TestTwo from './Components/test/TestTwo';
+import Header from './Components/Header/Header';
+import Banner from './Components/Banner/Banner';
+
+export default function App() {
+  return (
+    <>
+      <Header/>
+      <Banner/>
+    </>
+  );
+}
