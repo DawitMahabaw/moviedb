@@ -1,0 +1,64 @@
+.title {
+  color: white;
+  margin: 0 0 22px;
+  font-size: 24px;
+}
+
+/* This wrapper creates a stacking context for a hovered card. */
+.Row {
+  position: relative;
+  z-index: 1;
+}
+
+/* Leave room for the arrows while allowing the card preview to grow outside. */
+.Row :global(.swiper) {
+  height: 280px;
+  padding: 0 28px;
+  overflow: visible;
+}
+
+/* Swiper's track is a horizontal flex row; this prevents vertical stacking. */
+.Row :global(.swiper-wrapper) {
+  display: flex;
+  flex-direction: row;
+}
+
+.Row :global(.swiper-slide) {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 227px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+/* Only the card being hovered may sit above its neighbouring posters. */
+.Row :global(.swiper-slide:hover) {
+  z-index: 5;
+}
+
+/* Navigation buttons base style */
+.Row :global(.swiper-button-prev),
+.Row :global(.swiper-button-next) {
+  background: transparent !important;
+  color: white !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* Smaller arrow icon */
+.Row :global(.swiper-button-prev::after),
+.Row :global(.swiper-button-next::after) {
+  font-size: 14px !important;
+}
+
+/* Show on hover */
+.Row:hover :global(.swiper-button-prev),
+.Row:hover :global(.swiper-button-next) {
+  opacity: 1;
+  pointer-events: auto;
+}
