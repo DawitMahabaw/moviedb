@@ -70,10 +70,12 @@
     transition: all 0.2s;
 }
 
+/* Creates a full-width vertical dark gradient that fades from   transparent to dark,helping blend the image into the dark background and making text easier to read */
+
 .fadeButton{
     height: 11rem;
     background-image: linear-gradient(
-        180deg,
+        180deg, 
         transparent,
         rgb(37,37,37, 0.61),
         #111
