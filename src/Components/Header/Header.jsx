@@ -92,7 +92,7 @@ function Header() {
           <button className={styles.iconButton}>
             {/* notification icon */}
             <Bell size={20} />
-            <span className={styles.notificationBadge}>145</span>
+            <span className={styles.notificationBadge}>5</span>
           </button>
 
           {/* profile */}
