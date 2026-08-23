@@ -13,11 +13,11 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.content}>
         {/* Social buttons are grouped first, matching the reference design. */}
-        <div className={styles.socialLinks} aria-label="Social media links">
-          <a href="#facebook" aria-label="Facebook"><FaFacebookF /></a>
-          <a href="#instagram" aria-label="Instagram"><FaInstagram /></a>
-          <a href="#twitter" aria-label="Twitter"><FaTwitter /></a>
-          <a href="#youtube" aria-label="YouTube"><FaYoutube /></a>
+        <div className={styles.socialLinks}>
+          <a href="" ><FaFacebookF /></a>
+          <a href="#"><FaInstagram /></a>
+          <a href="#" ><FaTwitter /></a>
+          <a href="#"><FaYoutube /></a>
         </div>
 
         {/* Each nested array becomes one vertical column of footer links. */}
@@ -25,7 +25,7 @@ function Footer() {
           {footerLinks.map((column, columnIndex) => (
             <div className={styles.linkColumn} key={columnIndex}>
               {column.map((link) => (
-                <a href={`#${link.toLowerCase().replaceAll(" ", "-")}`} key={link}>{link}</a>
+                <a href="" key={link}>{link}</a>
               ))}
             </div>
           ))}
