@@ -13,6 +13,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 // The /io path tells React to load icons from the Ionicons icon set.
 
+const Image_Base = "https://image.tmdb.org/t/p/w500"
 
 function MovieCard({ movie }) {
   let genres = ["Adventure", "Action", "Thriller"];
@@ -22,7 +23,7 @@ function MovieCard({ movie }) {
       {/* poster image */}
       <img
         className={styles.poster}
-        src={movie?.poster_path}
+        src={`${Image_Base}${movie?.poster_path}`}
         alt="poster image"
       />
 
@@ -31,7 +32,7 @@ function MovieCard({ movie }) {
         {/* img */}
         <img
           className={styles.hoverImage}
-          src={movie?.poster_path}
+          src={`${Image_Base}${movie?.poster_path}`}
           alt="hover image"
         />
 
