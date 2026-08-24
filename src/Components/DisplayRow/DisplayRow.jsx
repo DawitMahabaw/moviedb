@@ -8,8 +8,9 @@ function DisplayRow() {
   return (
     <div className={styles.mainWrapper}>
       <SlideShow title="Movie Suggestions" movies={movies} />
-      <SlideShow title="Popular on netflix" movies={movies} />
-      <SlideShow title="Movie Suggestions" movies={movies} />
+      <SlideShow title="Popular on Netflix" movies={movies} />
+      <SlideShow title="Trending Now " movies={movies} />
+      <SlideShow title="New Release" movies={movies} />
     </div>
   );
 }

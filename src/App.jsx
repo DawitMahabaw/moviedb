@@ -1,6 +1,4 @@
 import React from 'react'
-import TestOne from './Components/test/TestOne'
-import TestTwo from './Components/test/TestTwo';
 import Header from './Components/Header/Header';
 import Banner from './Components/Banner/Banner';
 import DisplayRow from "./Components/DisplayRow/DisplayRow";

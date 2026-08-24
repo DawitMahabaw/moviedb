@@ -1,10 +1,17 @@
 import React from "react";
 import styles from "./MovieCard.module.css";
+// react icons contains icons from many different icon libraries.
 import { FaCirclePlay } from "react-icons/fa6";
-// The /fa6 path tells React to only load icons from the Font Awesome version 6 set.
+// The /fa6 path tells React to load icons from the Font Awesome version 6 set.
+
 import { BsPlusCircle } from "react-icons/bs";
+// The /bs path tells React to load icons from the Bootstrap Icons set.
+
 import { GoCheckCircleFill } from "react-icons/go";
+// The /go path tells React to load icons from the GitHub Octicons icon set.
+
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+// The /io path tells React to load icons from the Ionicons icon set.
 
 
 function MovieCard({ movie }) {

@@ -6,6 +6,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
+   // movies?.map(...) is called optional chaining  which means:
+   // "Map over movies only if movies exists((is not null or undefined)"
+
 function SlideShow({title, movies}) {
   return (
     <div>
@@ -14,12 +17,10 @@ function SlideShow({title, movies}) {
         <Swiper
           modules={[Navigation]}
           navigation
-          // "auto" lets each slide use the exact poster width from the CSS.
-          // This prevents Swiper from shrinking cards until they overlap.
-          slidesPerView="auto"
-          spaceBetween={78}
+          slidesPerView={5}
+          spaceBetween={55}
         >
-          {movies.map((movie) => (
+          {movies?.map((movie) => (
             <SwiperSlide key={movie.id}>
               <MovieCard movie={movie} />
             </SwiperSlide>
