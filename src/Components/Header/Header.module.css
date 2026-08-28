@@ -60,6 +60,12 @@
   color: #b3b3b0;
 }
 
+/* RESPONSIVE: hidden on desktop because the full navigation fits there. */
+.mobileMenuButton {
+  display: none;
+  flex-shrink: 0;
+}
+
 /* right side section */
 
 .rightSection {
@@ -227,9 +233,10 @@
 
 
 
-/* Responsive  */
+/* RESPONSIVE: media queries below adjust the header at tablet and phone widths only. */
 
 @media (max-width: 1024px){
+    /* RESPONSIVE: reduce header spacing before the navigation becomes crowded on tablets. */
     .container{
         padding: 0 24px;
         gap:24px;
@@ -248,43 +255,108 @@
 }
 
 @media (max-width: 760px){
-    .container{
-        padding: 0 16px;
-        gap: 16px;
+    /* RESPONSIVE: mobile keeps the logo and controls in one row while the links move into a menu. */
+    .header {
+        --mobile-panel-top: 64px;
     }
 
-    .nav{
-        display: none;
+    .container{
+        padding: 0 16px;
+        gap: 14px;
     }
 
     .logo {
         width: 80px;
     }
 
-    .searchInput{
-        width: 120px;
+    .mobileMenuButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: 0;
+        color: #f5f5f1;
+        cursor: pointer;
+        padding: 4px;
     }
+
+    .nav{
+        display: none;
+    }
+
+    .navOpen {
+        display: grid;
+        gap: 0;
+        position: fixed;
+        top: var(--mobile-panel-top);
+        left: 16px;
+        right: 16px;
+        padding: 8px 0;
+        background: rgba(0, 0, 0, 0.96);
+        border: 1px solid #333;
+        border-radius: 4px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+        z-index: 1001;
+    }
+
+    .navOpen .navLink {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
     .rightSection{
-        gap: 16px;
+        gap: 14px;
+        margin-left: auto;
+    }
+
+    .searchContainer {
+        position: static;
+    }
+
+    .searchInput{
+        position: fixed;
+        top: var(--mobile-panel-top);
+        left: 16px;
+        right: 16px;
+        z-index: 1001;
+        width: auto;
+        max-width: none;
     }
 }
 
 @media (max-width: 480px){
+    /* RESPONSIVE: compact phone spacing preserves search, notification, and profile controls. */
+    .header {
+        --mobile-panel-top: 60px;
+    }
+
     .container{
         padding: 0 12px;
+        gap: 10px;
     }
 
     .logo {
         width: 70px;
     }
 
+    .rightSection{
+        gap: 10px;
+    }
+
+    .profileButton {
+        gap: 4px;
+        padding: 4px 0;
+    }
+
     .searchInput{
-        width: 100px;
+        left: 12px;
+        right: 12px;
         font-size: 12px;
         padding: 6px 12px;
     }
 
-    .rightSection{
-        gap: 12px;
+    .navOpen {
+        left: 12px;
+        right: 12px;
     }
 }

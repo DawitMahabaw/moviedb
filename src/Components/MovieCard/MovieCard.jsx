@@ -17,13 +17,15 @@ const Image_Base = "https://image.tmdb.org/t/p/w500"
 
 function MovieCard({ movie }) {
   let genres = ["Adventure", "Action", "Thriller"];
+  const posterImagePath = movie?.poster_path || movie?.backdrop_path;
+  const previewImagePath = movie?.backdrop_path || movie?.poster_path;
 
   return (
     <div className={styles.cardWrapper}>
       {/* poster image */}
       <img
         className={styles.poster}
-        src={`${Image_Base}${movie?.poster_path}`}
+        src={`${Image_Base}${posterImagePath}`}
         alt="poster image"
       />
 
@@ -32,7 +34,8 @@ function MovieCard({ movie }) {
         {/* img */}
         <img
           className={styles.hoverImage}
-          src={`${Image_Base}${movie?.poster_path}`}
+          src={`${Image_Base}${posterImagePath}`}
+          // src={`${Image_Base}${previewImagePath}`}
           alt="hover image"
         />
 

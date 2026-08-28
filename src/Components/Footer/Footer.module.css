@@ -51,9 +51,20 @@
 }
 
 @media (max-width: 640px) {
-  /* Two columns keep the footer readable on a narrow screen. */
+  /* RESPONSIVE: two columns keep the footer readable on a narrow screen. */
   .linkGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+  }
+}
+
+/* RESPONSIVE: reduce outer spacing on very small phones. */
+@media (max-width: 400px) {
+  .footer {
+    padding: 44px 16px 18px;
+  }
+
+  .socialLinks {
+    gap: 20px;
   }
 }

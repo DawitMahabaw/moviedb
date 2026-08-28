@@ -82,3 +82,76 @@
     );
     width: 100%;
 }
+
+/* RESPONSIVE: tablet sizing keeps banner text readable without covering the artwork. */
+@media (max-width: 1024px) {
+    .contents {
+        padding-top: 250px;
+        padding-left: 24px;
+    }
+
+    .logoImg {
+        width: 120px;
+        top: 65px;
+    }
+
+    .title {
+        font-size: 2.4rem;
+        top: 35px;
+    }
+
+    .description {
+        font-size: 18px;
+        max-width: 560px;
+        top: 30px;
+    }
+
+    .buttonContainer {
+        top: 35px;
+    }
+}
+
+/* RESPONSIVE: phones use a shorter banner and allow controls to wrap instead of overflow. */
+@media (max-width: 600px) {
+    .banner {
+        background-position: 62% center;
+    }
+
+    .contents {
+        padding: 180px 16px 0;
+    }
+
+    .logoImg {
+        width: 95px;
+        top: 40px;
+    }
+
+    .title {
+        font-size: clamp(1.8rem, 8vw, 2.3rem);
+        top: 22px;
+        margin-bottom: 0;
+    }
+
+    .description {
+        font-size: 15px;
+        height: auto;
+        max-width: min(100%, 440px);
+        top: 18px;
+        margin-bottom: 0;
+    }
+
+    .buttonContainer {
+        flex-wrap: wrap;
+        gap: 10px;
+        top: 24px;
+    }
+
+    .button {
+        margin-right: 0;
+        padding: 8px 14px;
+    }
+
+    .fadeButton {
+        height: 7rem;
+    }
+}

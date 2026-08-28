@@ -1,5 +1,6 @@
 .title {
   color: white;
+   margin: 0 0 10px;
 }
 
 /* Keeps the carousel inside the page without clipping the preview vertically. */
@@ -11,7 +12,7 @@
 
 /* Extra height gives an enlarged card room without moving the next row. */
 .Row :global(.swiper) {
-  height: 290px;
+  height: 430px;
   /* Reserve equal space for the left and right arrow areas. */
   padding: 0 58px;
   box-sizing: border-box;
@@ -40,7 +41,8 @@
   pointer-events: none;
   transition: opacity 0.3s ease;
   top: 50%;
-  transform: translateY(-70%);
+  margin-top: 0;
+  transform: translateY(-50%);
 }
 
 .Row :global(.swiper-button-prev) { left: 12px; }
@@ -57,4 +59,66 @@
 .Row:hover :global(.swiper-button-next) {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* RESPONSIVE: each row becomes shorter as cards become narrower on tablets. */
+@media (max-width: 1024px) {
+  .Row :global(.swiper) {
+    height: 410px;
+    padding: 0 42px;
+  }
+
+  .Row :global(.swiper-slide) {
+    width: auto;
+  }
+}
+
+/* RESPONSIVE: phones show fewer cards while keeping swipe and arrow navigation available. */
+@media (max-width: 600px) {
+  .title {
+    font-size: 18px;
+    margin: 0 0 8px;
+  }
+
+  .Row :global(.swiper) {
+    /* RESPONSIVE: fixed row space prevents an expanded preview from moving the next row. */
+    height: 390px;
+    padding: 0 34px;
+  }
+
+  .Row :global(.swiper-button-prev),
+  .Row :global(.swiper-button-next) {
+    /* RESPONSIVE: arrows remain usable when the device is not being swiped. */
+    display: flex;
+    width: 28px;
+    height: 40px;
+    opacity: 1;
+    pointer-events: auto;
+    top: 50%;
+    margin-top: 0;
+    transform: translateY(-50%);
+    z-index: 20;
+  }
+
+  .Row :global(.swiper-button-prev) {
+    left: 2px;
+  }
+
+  .Row :global(.swiper-button-next) {
+    right: 2px;
+  }
+
+  .Row :global(.swiper-button-prev::after),
+  .Row :global(.swiper-button-next::after) {
+    /* RESPONSIVE: slightly larger phone arrow symbols are easier to tap without covering cards. */
+    font-size: 16px !important;
+  }
+}
+
+/* RESPONSIVE: very small phones get slightly tighter arrow gutters to leave more room for posters. */
+@media (max-width: 400px) {
+  .Row :global(.swiper) {
+    height: 370px;
+    padding: 0 32px;
+  }
 }

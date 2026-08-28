@@ -5,3 +5,16 @@ body {
   overflow-x: hidden;
   background: #000;
 }
+
+/* RESPONSIVE: small screens get sizing helpers that prevent accidental horizontal overflow. */
+@media (max-width: 1024px) {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

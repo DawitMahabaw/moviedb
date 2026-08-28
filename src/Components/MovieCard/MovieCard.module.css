@@ -1,7 +1,7 @@
 .cardWrapper{
     position: relative;
-    width: 290px;
-    height: 198px;
+    width: 227px;
+    height: 341px;
     cursor: pointer;
     transition: transform 0.3s ease;
     overflow: visible;
@@ -10,10 +10,11 @@
 }
 
 .poster{
-    width: 227px;
-    height: 128px;
+    width: 100%;
+    height: 100%;
     border-radius: 6px;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #111;
     transition: transform 0.3s ease;
     position: relative;
     z-index: 2;
@@ -21,19 +22,14 @@
 
 .hoverCard{
     position: absolute;
-    top: -50px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) scale(0.95);
-    /* The preview is only slightly wider than its 227px poster. */
-    width: 260px;
-    /* these below two mean 
-       "At least 270px tall, but grow automatically if the content needs more space."
-     */
-    min-height: 270px;
-    height: auto;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 280px;
+    min-height: 380px;
     background: #111;
     border-radius: 8px;
-    overflow: visible;
+    overflow: hidden;
     box-shadow: 0px 20px 40px rgba(0,0,0,0.8);
 
     /* hidden by default */
@@ -55,14 +51,14 @@
 .cardWrapper:hover .hoverCard {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
     pointer-events: auto;
 }
 
 .hoverCard:hover{
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
     pointer-events: auto;
 }
 
@@ -73,7 +69,7 @@
 
 .hoverImage{
     width: 100%;
-    height: 130px;
+    height: 260px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
 }
@@ -144,4 +140,81 @@
 
 .tag{
     color: #ddd;
+}
+
+/* RESPONSIVE: card and poster fill the width that Swiper assigns at each breakpoint. */
+@media (max-width: 1024px) {
+    .cardWrapper {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2 / 3;
+    }
+
+    .poster {
+        width: 100%;
+        height: 100%;
+    }
+
+    .hoverCard {
+        width: min(280px, calc(100vw - 32px));
+        min-height: 360px;
+    }
+
+    .hoverImage {
+        height: 240px;
+    }
+
+    .badge {
+        font-size: 11px;
+        margin: 8px 0 0 10px;
+    }
+
+    .buttonsRow {
+        gap: 6px;
+        margin: 10px;
+    }
+
+    .circleButton,
+    .circleButtonSmall {
+        width: 34px;
+        height: 34px;
+    }
+
+    .metaRow {
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 6px 10px;
+        font-size: 12px;
+    }
+
+    .genres {
+        font-size: 12px;
+        margin: 6px 10px 10px 10px;
+    }
+}
+
+/* RESPONSIVE: keep the hover preview anchored to the small movie card and large enough to cover it. */
+@media (max-width: 600px) {
+    .hoverCard {
+        width: min(270px, calc(100vw - 32px));
+        min-height: 350px;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .cardWrapper:hover .hoverCard,
+    .hoverCard:hover {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* RESPONSIVE: very narrow phones use a smaller preview so it stays inside the viewport. */
+@media (max-width: 400px) {
+    .hoverCard {
+        width: min(250px, calc(100vw - 24px));
+        min-height: 330px;
+    }
+
+    .hoverImage {
+        height: 135px;
+    }
 }

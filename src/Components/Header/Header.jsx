@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/image/logo.png";
 import { Link } from "react-router-dom";
-import { Search, Bell, User, ChevronDown } from "lucide-react";
+import { Search, Bell, User, ChevronDown, Menu, X } from "lucide-react";
 import styles from "./Header.module.css";
 
 function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileOn, setIsProfileOn] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   //   for blur
   // window.addEventListener() is a side effect.
@@ -29,30 +30,68 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // RESPONSIVE: keep mobile dropdown layers from stacking over each other on small screens.
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((isOpen) => !isOpen);
+    setIsSearchOpen(false);
+    setIsProfileOn(false);
+  };
+
+  // RESPONSIVE: search can open below the header on mobile without squeezing the icon row.
+  const toggleSearch = () => {
+    setIsSearchOpen((isOpen) => !isOpen);
+    setIsMobileMenuOpen(false);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // RESPONSIVE: the profile dropdown stays usable by closing wider mobile panels first.
+  const toggleProfileMenu = () => {
+    setIsProfileOn((isOpen) => !isOpen);
+    setIsMobileMenuOpen(false);
+    setIsSearchOpen(false);
+  };
+
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
         {/* Logo */}
         <img className={styles.logo} src={logo} alt="" />
 
+        {/* RESPONSIVE: this button opens the full navigation on small screens. */}
+        <button
+          type="button"
+          className={styles.mobileMenuButton}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+
         {/* navigation links */}
-        <nav className={styles.nav}>
-          <Link className={styles.navLink} to="">
+        <nav
+          className={`${styles.nav} ${isMobileMenuOpen ? styles.navOpen : ""}`}
+          aria-label="Primary navigation"
+        >
+          <Link className={styles.navLink} to="" onClick={closeMobileMenu}>
             Home
           </Link>
-          <Link className={styles.navLink} to="">
+          <Link className={styles.navLink} to="" onClick={closeMobileMenu}>
             Tv Shows
           </Link>
-          <Link className={styles.navLink} to="">
+          <Link className={styles.navLink} to="" onClick={closeMobileMenu}>
             Movies
           </Link>
-          <Link className={styles.navLink} to="">
+          <Link className={styles.navLink} to="" onClick={closeMobileMenu}>
             New & Popular
           </Link>
-          <Link className={styles.navLink} to="">
+          <Link className={styles.navLink} to="" onClick={closeMobileMenu}>
             My List
           </Link>
-          <Link className={styles.navLink} to="">
+          <Link className={styles.navLink} to="" onClick={closeMobileMenu}>
             Browse by Language
           </Link>
         </nav>
@@ -62,8 +101,11 @@ function Header() {
           {/* search */}
           <div className={styles.searchContainer}>
             <button
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              type="button"
+              onClick={toggleSearch}
               className={styles.searchButton}
+              aria-label="Toggle search"
+              aria-expanded={isSearchOpen}
             >
               <Search size={20} />
             </button>
@@ -89,7 +131,7 @@ function Header() {
           </div>
 
           {/* notification */}
-          <button className={styles.iconButton}>
+          <button type="button" className={styles.iconButton} aria-label="Notifications">
             {/* notification icon */}
             <Bell size={20} />
             <span className={styles.notificationBadge}>5</span>
@@ -98,8 +140,11 @@ function Header() {
           {/* profile */}
           <div className={styles.profileContainer}>
             <button
-              onClick={() => setIsProfileOn(!isProfileOn)}
+              type="button"
+              onClick={toggleProfileMenu}
               className={styles.profileButton}
+              aria-label="Toggle profile menu"
+              aria-expanded={isProfileOn}
             >
               {/* user icon */}
               <div className={styles.profileAvatar}>
